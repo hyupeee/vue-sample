@@ -1,17 +1,14 @@
 <template>
-  <hello-world />
+  <v-container>
+    메인
+  </v-container>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import HelloWorld from '../components/HelloWorld.vue';
+import { Vue, Component } from 'vue-property-decorator';
 
-export default Vue.extend({
-	// eslint-disable-next-line vue/multi-word-component-names
-	name: 'Home',
+@Component
+export default class HomeView extends Vue {
 
-	components: {
-		HelloWorld,
-	},
-});
+}
 </script>
