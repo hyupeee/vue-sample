@@ -1,18 +1,14 @@
 <template>
-  <div id="app">
-    <MainHeader />
+  <v-app>
     <router-view />
-  </div>
+  </v-app>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import MainHeader from './components/MainHeader.vue';
-
 
 @Component({
-  name: 'mainheader',
-  components: { MainHeader, },
+  name: 'App',
 })
 export default class App extends Vue {
 
@@ -31,3 +27,8 @@ protected mounted() {
 }
 
 </script>
+<style lang="scss">
+  .app-back {
+    background-image: url("assets/header/netflex-background.jpeg");
+  }
+</style>
