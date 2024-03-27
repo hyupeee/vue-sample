@@ -10,7 +10,7 @@
                 </figure>
             </v-toolbar-title>
             <v-spacer/>
-            <v-btn class="white--text" color="#B71C1C" elevation="0" depressed>
+            <v-btn class="white--text" color="#B71C1C" elevation="0" depressed v-on:click="login()">
                 로그인
             </v-btn>
         </v-toolbar>
@@ -25,6 +25,13 @@ export default class MainHeader extends Vue {
     protected mounted() {
         console.log('header mounted');
     }
+
+    private login() {
+        console.log('login start');
+
+        this.$router.push({name: 'LoginView',});
+    }
+
 }
 </script>
 <style lang="scss">

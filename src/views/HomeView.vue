@@ -20,7 +20,9 @@ import Banner from '@/components/home/Banner.vue';
   },
 })
 export default class HomeView extends Vue {
-
+  protected mounted() {
+    console.log('HomeView mounted');
+  }
 }
 </script>
 <style lang="scss">
