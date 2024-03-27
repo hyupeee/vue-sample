@@ -1,13 +1,13 @@
 <template>
   <div class="home-view">
-    <MainHeader />
+    <MainHeader ref="mainHeader" />
     <Banner class="banner"/>
   </div>
   
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Ref } from 'vue-property-decorator';
 import MainHeader from '@/components/home/MainHeader.vue';
 import Banner from '@/components/home/Banner.vue';
 
@@ -20,8 +20,19 @@ import Banner from '@/components/home/Banner.vue';
   },
 })
 export default class HomeView extends Vue {
+  @Ref() mainHeader!: MainHeader;
+
   protected mounted() {
     console.log('HomeView mounted');
+    const loginChk: any = sessionStorage.getItem('loginYn');
+    if(loginChk === 'Y') {
+      this.mainHeader.setLoginYn();
+    }
+    
+  }
+
+  protected destroyed() {
+    console.log('destroyed');
   }
 }
 </script>

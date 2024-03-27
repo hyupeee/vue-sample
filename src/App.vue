@@ -21,6 +21,9 @@ private items = [
 ]
 
 protected mounted() {
+  sessionStorage.setItem('userId', 'leesanghyup');
+  sessionStorage.setItem('userPw', 'qwe123@');
+  sessionStorage.setItem('loginYn', 'N');
   console.log('mounted');
 }
 

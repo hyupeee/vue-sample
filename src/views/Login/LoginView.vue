@@ -2,7 +2,7 @@
   <v-container class="mt-10">
     <div class="ml-10 mr-10">
         <h2>넷플릭스 로그인</h2>
-        <v-form>
+        <form v-on:submit.prevent="valid()">
             <v-text-field
                 label="아이디"
                 v-model="insertId"
@@ -15,14 +15,8 @@
                 :type="showEye ? 'text' : 'password'"
                 v-on:click:append="showEye = !showEye"
             ></v-text-field>
-            <v-btn
-                class="white--text" 
-                color="#B71C1C" 
-                elevation="0" 
-                depressed
-                :type="submit"
-            >로그인</v-btn>
-        </v-form>
+            <button type="submit" class="btn_login">로그인</button>
+        </form>
         <p>테스트</p>
         <p>아이디 : {{insertId}}</p>
         <p>비밀번호 : {{insertPw}}</p>
@@ -41,15 +35,24 @@ export default class LoginView extends Vue{
     private insertPw = '';
     private showEye = false;
 
-    private valid(str: string) {
-        console.log('valid');
-        if('id') {
-            console.log('id');
+    private valid() {
+        if(this.insertId !== sessionStorage.getItem('userId')) {
+            alert('일치하는 ID가 없습니다');
+        } else if(this.insertPw !== sessionStorage.getItem('userPw')) {
+            alert('비밀번호가 다릅니다.');
+        } else {
+            sessionStorage.setItem('loginYn', 'Y');
+            this.$router.replace({name: 'home'});
         }
     }
 }
 </script>
 
 <style lang="scss">
-
+    .btn_login {
+        width: 5rem;
+        height: 3rem;
+        background-color: #B71C1C;
+        color: white;
+    }
 </style>
