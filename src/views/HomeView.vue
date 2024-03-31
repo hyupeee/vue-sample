@@ -27,9 +27,9 @@ export default class HomeView extends Vue {
   protected mounted() {
     console.log('HomeView mounted');
     
-    if(this.userInfo.loginYn === 'Y') {
-      this.mainHeader.setLoginYn();
-    }
+    // if(this.userInfo.loginYn === 'Y' && this.userInfo.loginYn !== null) {
+    //   this.mainHeader.setLoginYn();
+    // }
     
   }
 

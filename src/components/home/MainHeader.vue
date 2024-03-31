@@ -52,9 +52,13 @@ export default class MainHeader extends Vue {
             if(confirm('로그아웃 하시겠습니까?')) {
                 if(this.userInfo.loginYn === 'Y') {
                     this.setLoginYn();
+                    delete this.userInfo.loginYn;
+                    sessionStorage.setItem('userInfo', JSON.stringify(this.userInfo));
+                    
                 }
                 
                 alert('로그아웃 되었습니다.');
+                this.$router.replace({name:'home',});
             }
         }
         
