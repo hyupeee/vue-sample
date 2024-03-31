@@ -6,6 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { login } from './type/login';
 
 @Component({
   name: 'App',
@@ -14,17 +15,17 @@ export default class App extends Vue {
 
 private drawer = false;
 
-private items = [
-  {title: 'title1', },
-  {title: 'title2', },
-  {title: 'title3', },
-]
-
 protected mounted() {
-  sessionStorage.setItem('userId', 'leesanghyup');
-  sessionStorage.setItem('userPw', 'qwe123@');
-  sessionStorage.setItem('loginYn', 'N');
+  this.sessionDate();
+  // sessionStorage.setItem('userId', 'leesanghyup');
+  // sessionStorage.setItem('userPw', 'qwe123@');
+  // sessionStorage.setItem('loginYn', 'N');
   console.log('mounted');
+}
+
+private sessionDate() {
+  let userInfo: login = { userId: 'leesanghyup', userPw: 'qwe123@', };
+  sessionStorage.setItem('userInfo', JSON.stringify(userInfo)); 
 }
 
 }

@@ -11,12 +11,16 @@
             </v-toolbar-title>
             <v-spacer/>
             
-            <v-btn v-if="loginYn" class="white--text" color="#B71C1C" elevation="0" depressed v-on:click="login('login')">
-                로그인
+            <v-btn
+                class="white--text" 
+                color="#B71C1C" 
+                elevation="0" 
+                depressed 
+                v-on:click="loginYn ? login('login') : login('logout')"
+            >
+                {{loginYn ? "로그인" : "로그아웃"}}
             </v-btn>
-            <v-btn v-else class="white--text" color="#B71C1C" elevation="0" depressed v-on:click="login('logout')">
-                로그아웃
-            </v-btn>
+
             
         </v-toolbar>
     </div>
@@ -29,6 +33,7 @@ import { Vue, Component } from 'vue-property-decorator';
 export default class MainHeader extends Vue {
     private isLogin = true;
     private loginYn = true;
+    private userInfo = JSON.parse(sessionStorage.getItem('userInfo')!); 
 
     public setLoginYn() {
         this.loginYn = !this.loginYn;
@@ -45,8 +50,7 @@ export default class MainHeader extends Vue {
         } 
         if(str === 'logout') {
             if(confirm('로그아웃 하시겠습니까?')) {
-                const loginChk: any = sessionStorage.getItem('loginYn');
-                if(loginChk === 'Y') {
+                if(this.userInfo.loginYn === 'Y') {
                     this.setLoginYn();
                 }
                 

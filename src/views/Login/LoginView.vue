@@ -30,20 +30,29 @@ import { Vue, Component } from 'vue-property-decorator';
 @Component({
     name: 'LoginView',
 })
-export default class LoginView extends Vue{
+export default class LoginView extends Vue {
     private insertId = '';
     private insertPw = '';
     private showEye = false;
 
+    private userInfo = JSON.parse(sessionStorage.getItem('userInfo')!);
+
+    protected mounted() {
+        console.log(this.userInfo);
+    }
+
     private valid() {
-        if(this.insertId !== sessionStorage.getItem('userId')) {
-            alert('일치하는 ID가 없습니다');
-        } else if(this.insertPw !== sessionStorage.getItem('userPw')) {
-            alert('비밀번호가 다릅니다.');
-        } else {
-            sessionStorage.setItem('loginYn', 'Y');
-            this.$router.replace({name: 'home'});
+        if(this.insertId !== this.userInfo.userId) {
+            alert('일치하는 ID가 없습니다.');
+            return;
         }
+        if(this.insertPw !== this.userInfo.userPw) {
+            alert('비밀번호가 다릅니다.');
+            return;
+        }
+        this.userInfo.loginYn = 'Y';
+        sessionStorage.setItem('userInfo', JSON.stringify(this.userInfo));
+        this.$router.replace({name: 'home', });
     }
 }
 </script>

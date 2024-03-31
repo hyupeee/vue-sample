@@ -22,10 +22,12 @@ import Banner from '@/components/home/Banner.vue';
 export default class HomeView extends Vue {
   @Ref() mainHeader!: MainHeader;
 
+  private userInfo = JSON.parse(sessionStorage.getItem('userInfo')!);
+
   protected mounted() {
     console.log('HomeView mounted');
-    const loginChk: any = sessionStorage.getItem('loginYn');
-    if(loginChk === 'Y') {
+    
+    if(this.userInfo.loginYn === 'Y') {
       this.mainHeader.setLoginYn();
     }
     
